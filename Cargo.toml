@@ -4,3 +4,32 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+egui = "0.24"
+eframe = "0.24"
+egui-winit = "0.24"
+ 
+rusqlite = { version = "0.30", features = ["bundled", "chrono", "uuid"] }
+chrono = { version = "0.4", features = ["serde"] }
+ 
+dotenv = "0.15"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+ 
+uuid = { version = "1.6", features = ["v4", "serde"] }
+log = "0.4"
+env_logger = "0.11"
+anyhow = "1.0"
+thiserror = "1.0"
+ 
+[target.'cfg(windows)'.dependencies]
+winapi = { version = "0.3", features = ["winuser", "shellapi", "winnt"] }
+windows = { version = "0.51", features = ["Win32_Foundation", "Win32_System_Com", "Win32_System_Variant"] }
+ 
+[target.'cfg(target_os = "linux")'.dependencies]
+dirs = "5.0"
+ 
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
